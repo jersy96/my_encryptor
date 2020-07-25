@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'utils/strings.dart';
+import 'encryption/CesarEncryptor.dart';
 
 void main() {
   runApp(MyApp(
@@ -93,21 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   // Level 3
   String _encryptWithCesar(String alphabet, String text, int increment) {
-    String encryptedText = '';
-    bool invalidCharFound = false;
-    _iterateString(text, (String char) {
-      int index = _alphabet.indexOf(char);
-      if (index < 0) invalidCharFound = true;
-      int newIndex = (index + increment) % alphabet.length;
-      if (!invalidCharFound) {
-        encryptedText += alphabet[newIndex];
-      }
-    });
-    return invalidCharFound ? '' : encryptedText;
-  }
-
-  // Level 4
-  void _iterateString(String str, Function callback) {
-    StringUtils.iterate(str, callback);
+    CesarEncryptor encryptor = CesarEncryptor(alphabet, increment);
+    return encryptor.encrypt(text);
   }
 }
