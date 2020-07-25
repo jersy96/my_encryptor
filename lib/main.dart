@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'utils/strings.dart';
 
 void main() {
   runApp(MyApp(
@@ -107,11 +108,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   // Level 4
   void _iterateString(String str, Function callback) {
-    List<int> stringIndexList =
-        new List<int>.generate(str.length, (int index) => index);
-    stringIndexList.forEach((index) {
-      var char = str[index];
-      callback(char);
-    });
+    StringUtils.iterate(str, callback);
   }
 }
